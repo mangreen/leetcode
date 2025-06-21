@@ -24,11 +24,3 @@ func lengthOfLongestSubstringKDistinct(s string, k int) int {
 
 	return maxL
 }
-
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-
-	return b
-}

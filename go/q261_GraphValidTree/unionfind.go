@@ -23,7 +23,7 @@ func validTree2(n int, edges [][]int) bool {
 
 func find(roots []int, cur int) int {
 	for roots[cur] != -1 {
-		cur = roots[cur]
+		cur = find(roots, roots[cur])
 	}
 
 	return cur

@@ -14,7 +14,7 @@ Output: 12.75
 Explanation:
 when length is 5, maximum average value is 10.8,
 when length is 6, maximum average value is 9.16667.
-Thus return 12.75.
+Thus return 12.75 ([12, -5, -6, 50]).
  
 
 Note:

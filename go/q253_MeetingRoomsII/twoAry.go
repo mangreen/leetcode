@@ -17,7 +17,7 @@ func minMeetingRooms(intervals [][]int) int {
 	ans := 0
 	endIdx := 0
 	for i := range starts {
-		if starts[i] < ends[endIdx] {
+		if starts[i] <= ends[endIdx] {
 			ans++
 			continue
 		}

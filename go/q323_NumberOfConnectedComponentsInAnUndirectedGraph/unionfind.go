@@ -25,7 +25,7 @@ func countComponents3(n int, edges [][]int) int {
 
 func find(roots []int, cur int) int {
     for roots[cur] != -1 {
-        cur = roots[cur]
+        cur = find(roots, roots[cur])
     }
 
     return cur

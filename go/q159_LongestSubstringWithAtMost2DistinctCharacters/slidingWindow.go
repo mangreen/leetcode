@@ -12,20 +12,18 @@ func lengthOfLongestSubstringTwoDistinct2(s string) int {
 		}
 
 		if end >= 0 && s[end] != s[i] {
-			longest = max2(longest, i-start)
+			longest = max(longest, i-start)
 			start = end + 1
 		}
 
 		end = i - 1
 	}
 
-	return max2(len(s)-start, longest)
+	return max(len(s)-start, longest)
 }
+/*
+此非最佳解
+請參考340 
+k為2即可
+*/
 
-func max2(a, b int) int {
-	if a > b {
-		return a
-	}
-
-	return b
-}

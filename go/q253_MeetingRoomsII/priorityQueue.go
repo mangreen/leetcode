@@ -10,61 +10,61 @@ func minMeetingRooms2(intervals [][]int) int {
 		return intervals[i][0] < intervals[j][0]
 	})
 
-	h := &IntervalMinHeap{}
+	h := &MinHeap{}
 	heap.Init(h)
 
 	for _, v := range intervals {
 		if h.Len() == 0 {
-			heap.Push(h, Interval{
-				Start: v[0],
-				End: v[1],
+			heap.Push(h, Pair{
+				S: v[0],
+				E: v[1],
 			})
-
+			
 			continue
-		}
+		} 
 
 		top := (*h)[0]
 
-		if top.End < v[0] {
+		if top.E <= v[0] {
 			heap.Pop(h)
 		}
 
-		heap.Push(h, Interval{
-			Start: v[0],
-			End: v[1],
+		heap.Push(h, Pair{
+			S: v[0],
+			E: v[1],
 		})
 	}
 
 	return h.Len()
 }
 
-type Interval struct {
-	Start int
-	End   int
+type Pair struct {
+	S int
+	E int
 }
 
-type IntervalMinHeap []Interval
+type MinHeap []Pair
 
-func (h IntervalMinHeap) Len() int {
+func (h MinHeap) Len() int {
 	return len(h)
 }
 
-func (h IntervalMinHeap) Less(i, j int) bool {
-	return h[i].End < h[j].End
+func (h MinHeap) Less(i, j int) bool {
+	return h[i].E < h[j].E
 }
 
-func (h IntervalMinHeap) Swap(i, j int) {
+func (h MinHeap) Swap(i, j int) {
 	h[i], h[j] = h[j], h[i]
 }
 
-func (h *IntervalMinHeap) Push(x interface{}) {
-	*h = append(*h, x.(Interval))
+func (h *MinHeap) Push(x any) {
+	*h = append(*h, x.(Pair))
 }
 
-func (h *IntervalMinHeap) Pop() interface{} {
+func (h *MinHeap) Pop() any {
 	old := *h
-	n := len(old)
-	x := old[n-1]
-	*h = old[:n-1]
+	N := len(old)
+	x := old[N-1]
+	*h = old[:N-1]
 	return x
 }
