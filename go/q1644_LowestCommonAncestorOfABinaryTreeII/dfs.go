@@ -27,6 +27,12 @@ func DFS(n, p, q *TreeNode, cnt *int) *TreeNode {
 		return nil
 	}
 
+	/*
+        題目不保證 p 和 q 一定存在於樹中，
+        所以需要先搜尋子樹來確認 p 和 q 是否都存在。
+		如果只要找到其中一個就可以立即返回，
+		有可能 p 或 q 存在其子樹而錯誤。
+    */
 	l := DFS(n.Left, p, q, cnt)
 	r := DFS(n.Right, p, q, cnt)
 

@@ -1,5 +1,4 @@
 # [269 - Alien Dictionary](https://leetcode.ca/all/269.html)
-
 - https://leetcode.ca/2016-08-25-269-Alien-Dictionary/
 - https://www.cnblogs.com/grandyang/p/5250200.html
 

@@ -39,3 +39,16 @@ func DFS(p, q *TreeNode) *TreeNode {
 	}
 	return a
 }
+/*
+為什麼需要 a=q & b=p 交換指向？
+
+  r         r=a        r=b        r
+ /         /          /          / 
+p=a   ⭢   p=b   ⭢   p     ⭢   p=a=b
+ \         \          \          \
+  q=b       q          q=a        q  
+
+補齊兩個節點到達根節點的距離差。
+類似 142. Linked List Cycle II 找 cycle 起始點
+*/
+

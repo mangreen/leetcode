@@ -39,25 +39,25 @@ func inorderSuccessor(node *Node) *Node {
     return node
 }
 /*
-      5
-     / \ 
-    3   6
-   / \
-  2   4
+       5
+      / \ 
+    3     7
+   / \   /
+  2   4 6
  /
 1
 
 ★ 如果 n.Right 存在, 找到 n.Right 最 Left 的節點
 ex1.
-n=3 ⭢ ans=4
+n=3 ⭢ n.R=4 ⭢ n.L=nil ans=4
 ex3.
-n=5 ⭢ ans=6
+n=5 ⭢ n.R=7 ⭢ n.L=6 ans=6
 
 ★ 否則往上找直到 n == n.Parent.Left
 ex4.
-n=1 ⭢ ans=2
+n=1 == n.p2.L ⭢ ans=2
 
 ★ 不然就是 nil　
 ex2.
-n=6 ⭢ ans=nil
+n=7 ⭢ n.p=5 ⭢ n.p=nil ⭢ ans=nil
 */

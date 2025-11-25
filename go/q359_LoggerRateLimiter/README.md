@@ -34,3 +34,6 @@ logger.shouldPrintMessage(11,"foo"); returns true;
 
 Credits:
 Special thanks to @memoryless for adding this problem and creating all test cases.
+
+## Similar
+- [10004. Design a Rate Limiting System](https://leetcode.cn/problems/design-a-rate-limiting-system/description/)

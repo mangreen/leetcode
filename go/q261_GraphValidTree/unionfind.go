@@ -1,10 +1,10 @@
 package q261_GraphValidTree
 
+import "slices"
+
 func validTree2(n int, edges [][]int) bool {
-	roots := make([]int, n)
-	for i := range roots {
-		roots[i] = -1
-	}
+	// Go 1.23+ 新增 lices.Repeat
+	roots := slices.Repeat([]int{-1}, n)
 
 	for _, e := range edges {
 		x := find(roots, e[0])

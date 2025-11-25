@@ -14,7 +14,7 @@ func Test_lowestCommonAncestor_1(t *testing.T) {
     1   4
        /
       3
-    */
+  	*/
     
     n3 := &TreeNode{3, nil, nil, nil}
     
@@ -41,7 +41,7 @@ func Test_lowestCommonAncestor_2(t *testing.T) {
     1   4
        /
       3
-    */
+  	*/
     
     n3 := &TreeNode{3, nil, nil, nil}
     

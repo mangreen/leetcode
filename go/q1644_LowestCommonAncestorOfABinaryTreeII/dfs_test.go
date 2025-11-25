@@ -10,8 +10,8 @@ func Test_lowestCommonAncestor_1(t *testing.T) {
 
 	n6 := &TreeNode{6, nil, nil}
 	n5 := &TreeNode{5, n6, nil}
-    n1 := &TreeNode{1, nil, nil}
-    n3 := &TreeNode{3, n5, n1}
+	n1 := &TreeNode{1, nil, nil}
+	n3 := &TreeNode{3, n5, n1}
 
 	p := n6
 	q := n1
@@ -26,8 +26,8 @@ func Test_lowestCommonAncestor_2(t *testing.T) {
 
 	n6 := &TreeNode{6, nil, nil}
 	n5 := &TreeNode{5, n6, nil}
-    n1 := &TreeNode{1, nil, nil}
-    n3 := &TreeNode{3, n5, n1}
+	n1 := &TreeNode{1, nil, nil}
+	n3 := &TreeNode{3, n5, n1}
 
 	p := n5
 	q := &TreeNode{10, nil, nil}
