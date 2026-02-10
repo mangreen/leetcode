@@ -50,3 +50,19 @@ func (this *Leaderboard) Reset(playerId int) {
  * param_2 := obj.Top(K);
  * obj.Reset(playerId);
  */
+
+/*
+★ 解題思路:
+1. 用 Hash Map 來儲存 playerId -> score 的映射，方便快速查詢與更新。
+2. 針對 top(K)，則有幾種做法：
+  - 排序法：每次呼叫 top 時將所有分數取出並排序。時間複雜度 O(NlogN)。
+  - 最小堆 (Min-Heap)：維護一個大小為 $K$ 的堆疊。時間複雜度 O(NlogK)。
+
+ex.
+1	addScore(1, 73)	⭢ m:{1: 73}
+2	addScore(2, 56)	⭢ m:{1: 73, 2: 56}
+3	addScore(3, 39)	⭢ m:{1: 73, 2: 56, 3: 39}
+4	addScore(2, 20)	⭢ m:{1: 73, 2: 76, 3: 39}
+5	top(2) ⭢ sort [76, 73, 39] ⭢ 76 + 73 = 149
+6	reset(1)		⭢ m:{2: 76, 3: 39}
+*/

@@ -2,12 +2,14 @@ package q642_DesignSearchAutocompleteSystem
 
 import (
 	"sort"
+	"strings"
 )
 
+// 暴力解法
 type AutocompleteSystem struct {
-	m map[string]int
-	h string
-	q map[string]int
+	m      map[string]int // 儲存所有句子及其頻率
+	prefix string         // 當前輸入的前綴
+	cur    map[string]int // 當前候選句子
 }
 
 func Constructor(sentences []string, times []int) AutocompleteSystem {
@@ -23,43 +25,48 @@ func Constructor(sentences []string, times []int) AutocompleteSystem {
 	}
 }
 
+// Input 模擬使用者輸入字元，返回匹配的前 3 個句子
 func (a *AutocompleteSystem) Input(c byte) []string {
 	if c == '#' {
-		a.m[string(a.h)]++
-		a.h = ""
-		a.q = a.m
+		a.m[string(a.prefix)]++
+		a.prefix = ""
+		a.cur = a.m
 		return []string{}
 	}
 
-	a.h += string(c)
+	a.prefix += string(c)
 
-	sli := []pair{}
+	ps := []pair{}
 
-	for s, t := range a.q {
-		if s[:len(a.h)] == a.h {
-			sli = append(sli, pair{
+	// 篩選出匹配當前前綴的句子
+	for s, t := range a.cur {
+		// 判斷句子是否以當前前綴開頭
+		if strings.HasPrefix(s, a.prefix) {
+			ps = append(ps, pair{
 				s,
 				t,
 			})
 		} else {
-			delete(a.q, s)
+			delete(a.cur, s)
 		}
 	}
 
-	sort.Slice(sli, func(i, j int) bool {
-		a := sli[i]
-		b := sli[j]
-		return a.t>b.t || (a.t==b.t && a.s<b.s)
+	// 排序邏輯：先比次數 (降序)，再比字典序 (升序)
+	sort.Slice(ps, func(i, j int) bool {
+		a := ps[i]
+		b := ps[j]
+		return a.t > b.t || (a.t == b.t && a.s < b.s)
 	})
 
 	ans := []string{}
 
-	for i := 0; i < 3; i++ {
-        if len(sli) < i+1 {
-            break
-        }
-        
-		ans = append(ans, sli[i].s)
+	// 取前 3 個結果
+	for i := range 3 {
+		if len(ps) < i+1 {
+			break
+		}
+
+		ans = append(ans, ps[i].s)
 	}
 
 	return ans

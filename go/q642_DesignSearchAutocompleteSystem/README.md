@@ -66,3 +66,13 @@ Please remember to RESET your class variables declared in class AutocompleteSyst
 ## Similar:
 - 692. Top K Frequent Words
 - 792. Number of Matching Subsequences
+- 211. Design Add and Search Words Data Structure
+- 1268. Search Suggestions System
+
+## 題目要求說明
+
+這道題的核心在於前綴搜索 (Prefix Search) 與 動態更新排序。
+
+- 核心規則：熱度排序：回傳次數最多的前 3 個句子。如果次數相同，按 ASCII 字典序 排序（較小的在前）。
+- 結束符號：當輸入為 # 時，表示目前句子輸入結束，將該句子存入歷史紀錄（或增加熱度），並重置搜尋狀態。
+- 即時回饋：每輸入一個字元，都要即時回傳建議清單。

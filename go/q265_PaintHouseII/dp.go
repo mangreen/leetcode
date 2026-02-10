@@ -1,108 +1,47 @@
 package q256_PaintHouse
 
-import "math"
-
 func minCost(costs [][]int) int {
 	if len(costs) == 0 || len(costs[0]) == 0 {
 		return 0
 	}
 
-	min1, min2 := 0, 0
-	idx := -1
-
-	for i, row := range costs {
-		m1, m2 := math.MaxInt, math.MaxInt
-		jdx := -1
-
-		for j := range row {
-            // 找出最小和次小的，最小的要记录下标，方便下一轮判断
-			MN := min1
-			if j == idx {
-				MN = min2
-			}
-
-			c := costs[i][j] + MN
-
-			if c < m1 {
-				m2 = m1
-				m1 = c
-				jdx = j
-			} else if c < m2 {
-				m2 = c
-			}
-		}
-
-        min1 = m1
-        min2 = m2
-        idx = jdx
+	r, g, b := costs[0][0], costs[0][1], costs[0][2]
+	for _, c := range costs[1:] {
+		rNew := c[0] + min(g, b)
+		gNew := c[1] + min(r, b)
+		bNew := c[2] + min(r, g)
+		r, g, b = rNew, gNew, bNew
 	}
 
-    return min1
+	return min(r, min(g, b))
 }
-
 /*
+Time: O(n)
+Space: O(1)
+
 ex1.
+        r g b  
 costs=[[1,5,3],[2,9,4]]
-min1=0
-min2=0
-idx=-1
+i=1
+rNew=2+min(5,3)=5
+gNew=9+min(1,3)=10
+bNew=4+min(1,5)=5
 
-i=0
-        j
-costs=[[1,5,3],[2,9,4]] 
-c=1+0=1 < m1=MaxInt
-m1=MaxInt ⭢ 1
-m2=MaxInt ⭢ MaxInt
-jdx=-1 ⭢ 0
+return min(5,10,5)=5
 
-          j
-costs=[[1,5,3],[2,9,4]]
-c=5+0=5 > m1=1
-        < m2=MaxInt
-m1=1
-m2=MaxInt ⭢ 5
-jdx=0
-
-            j
-costs=[[1,5,3],[2,9,4]]
-c=3+0=3 > m1=1
-        < m2=5
-m1=1
-m2=5 ⭢ 3
-jdx=0
-
-
-min1=m1=1
-min2=m2=3
-idx=0
-
+ex2.
+		r  g  b   
+costs=[[17,2,17],[16,16,5],[14,3,19]]
 
 i=1
-                j==jdx=0
-costs=[[1,5,3],[2,9,4]] 
-c=2+3=5 < m1=MaxInt
-m1=MaxInt ⭢ 5
-m2=MaxInt ⭢ MaxInt
-jdx=-1 ⭢ 0
+rNew=16+min(2,17)=18
+gNew=16+min(17,17)=33
+bNew=5+min(17,2)=7
 
-                  j
-costs=[[1,5,3],[2,9,4]]
-c=9+1=10 > m1=5
-         < m2=MaxInt
-m1=5
-m2=MaxInt ⭢ 10
-jdx=0
+i=2
+rNew=14+min(33,7)=21
+gNew=3+min(18,7)=10
+bNew=19+min(18,33)=37
 
-                    j
-costs=[[1,5,3],[2,9,4]]
-c=4+1=5 == m1=5
-        < m2=10
-m1=5
-m2=10 ⭢ 5
-jdx=0
-
-
-min1=m1=5 ⭢ ans
-min2=m2=5
-idx=0
+return min(21,10,37)=10
 */
